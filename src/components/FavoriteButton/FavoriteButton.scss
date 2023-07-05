@@ -1,0 +1,11 @@
+.button--favorite {
+    color: #fff;
+    background-color: rgba(49, 48, 55, 1);
+    padding: 16px;
+
+    &.disabled {
+        cursor: not-allowed;
+        color: #fff;
+        background-color: rgba(168, 168, 168, 1);
+    }
+}

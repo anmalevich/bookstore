@@ -1,0 +1,45 @@
+.input-wrapper {
+    position: relative;
+    font-family: 'Helios',sans-serif;
+
+    .label {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 16px;
+        line-height: 32px;
+        font-weight: 700;
+    }
+
+    .input {
+        width: 100%;
+        height: 56px;
+        padding: 0 20px;
+        border: 1px solid rgba(231, 231, 231, 1);
+        outline: none;
+        font-size: 16px;
+        font-weight: 400;
+
+        &:focus {
+            border: 2px solid rgba(231, 231, 231, 1);
+        }
+
+        &:disabled {
+            color: rgba(168, 168, 168, 1);
+            background-color: rgba(231, 231, 231, 1);
+            cursor: not-allowed;
+        }
+
+        &.error {
+            border-color: rgba(252, 133, 127, 1);
+        }
+    }
+
+    .errorMesage {
+        position: absolute;
+        bottom: -32px;
+        font-size: 16px;
+        line-height: 32px;
+        font-weight: 400;
+        color: rgba(252, 133, 127, 1);
+    }
+}

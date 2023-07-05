@@ -1,0 +1,49 @@
+.button {
+    border: 1px solid #fff;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 18px 171px;
+    cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
+
+    &.button--primary {
+        color: #fff;
+        background-color: rgba(49, 48, 55, 1);
+        
+
+        &.active {
+            &:hover {
+                background-color: rgba(91, 90, 98, 1);
+            }
+        }
+
+        &.disabled {
+            background-color: rgba(168, 168, 168, 1);
+            cursor: not-allowed;
+            color: #fff;
+        }
+    }
+
+    &.button--delete {
+        color: rgba(49, 48, 55, 1);
+        background-color:#fff;
+        padding: 16px;
+
+        &.active {
+            &:hover {
+                color: rgba(252, 133, 127, 1);
+                transition: 0.3s;
+            }
+            &:focus {
+                color: rgba(252, 133, 127, 1);
+            }
+        }
+
+        &.disabled {
+            // background-color: rgba(168, 168, 168, 1);
+            cursor: not-allowed;
+            color: rgba(168, 168, 168, 1);
+        }
+    }
+
+}
