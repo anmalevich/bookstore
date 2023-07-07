@@ -4,42 +4,36 @@ import { FavoriteButton } from './components/FavoriteButton/FavoriteButton';
 import { Tabs } from './components/Tabs/Tabs';
 import {Form} from './components/Form/Form' ;
 import { Typography } from './components/Typography/Typography';
+import { ActionsCard } from './components/ActionsCard/ActionsCard';
+import { Rating } from './components/Rating/Rating';
+import { SmallCard } from './components/SmallCard/SmallCard';
+import { Subscription } from './components/Subscription/Subscription';
+import { Footer } from './components/Footer/Footer';
+import { Header } from './components/Header/Header';
+import { Search } from './components/Search/Search';
+import { PageTemplate } from './components/PageTemplate/PageTemplate';
+import { SignUp } from './pages/SignUp/SignUp';
+import { ResetPasswordPage } from './pages/ResetPasswordPage/ResetPasswordPage';
+import { MainPage } from './pages/MainPage/MainPage';
+import { CardList } from './components/CardList/CardList';
 
 
 export const App = () => {
 
-  const handleClick1 = () => {
-    console.log('click1');
-  }
-
-  const handleClick2 = () => {
-    console.log('click2');
-  }
-
-  const handleClick3 = () => {
-    console.log('click3');
-  }
-
-  const handleClick4 = () => {
-    console.log('click4');
-  }
-
-  const handleClick5 = () => {
-    console.log('click5');
-  }
-
-  const handleClick6 = () => {
-    console.log('click6');
-  }
-
     return (
       <div>
+        <PageTemplate>
+          <MainPage/>
+        </PageTemplate>
+{/*       
+      <br />
+      <Header/>
       <br/>
-      <Button type='primary' content='Add to cart' isDisabled onClick={handleClick1}/>
-      <Button type='primary' content='Add to cart' isDisabled={false} onClick={handleClick2}/>
+      <Button type='primary' content='Add to cart' isDisabled />
+      <Button type='primary' content='Add to cart' />
       <br/>
-      <Button type='delete' content= 'X' isDisabled onClick={handleClick3}/>
-      <Button type='delete' content='X' isDisabled={false} onClick={handleClick4}/>
+      <Button type='delete' content= 'x' isDisabled />
+      <Button type='delete' content='x' />
       <br/>
       <Typography content='Test' type='H1'/>
       <Typography content='Test' type='H2'/>
@@ -59,6 +53,16 @@ export const App = () => {
       <br />
       <br />
       <Form/>
+      <br />
+      <ActionsCard/>
+      <br />
+      <Rating/>
+      <br />
+      <SmallCard isbn13={0} title={'Securing DevOps'} image={'https://itbook.store/img/books/9781617294136.png'} authors={'Julien Vehent'} year={2018} price={'$26.98'}/>
+      <br />
+      <Subscription/>
+      <br />
+      <Footer/> */}
     </div>
     )
    }

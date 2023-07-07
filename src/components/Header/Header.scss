@@ -1,0 +1,39 @@
+.header {
+    height: 104px;
+    border-bottom: 1px solid rgba(231, 231, 231, 1);
+    margin-top: auto;
+    display: flex;
+    // gap: 150px;
+    justify-content: space-between;
+    align-items: center;
+
+    &__text{
+        margin-left: 15px;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    &__pages{
+        display: flex;
+    }
+
+    &__pages button{
+        // border: 3px soild transparent;
+        border: none;
+        background-color: #fff;
+        padding: 16px;
+
+        &:hover {
+            border-bottom: 3px solid  rgba(252, 133, 127, 1);
+            transition: 0.7s;
+        }
+
+        &.active {
+            &.focus{
+                border-bottom: 3px solid  rgba(91, 90, 98, 1);
+            }
+        }
+
+    }
+
+}

@@ -2,11 +2,12 @@ import { FC } from 'react';
 import './Typography.scss';
 
 interface ITypography {
-    content: string;
-    type: 'H1' | 'H2' | 'H3' | 'S1' | 'B' | 'B2'; 
+    content: string | number;
+    type: 'H1' | 'H2' | 'H3' | 'S1' | 'B' | 'B2';
+    isLink?: boolean; 
 }
 
-export const Typography: FC<ITypography> = ({content, type}) => {
+export const Typography: FC<ITypography> = ({content, type, isLink = false}) => {
 
     const typographyMap = {
         H1: <h1 className={type}>{content}</h1>,
@@ -19,7 +20,15 @@ export const Typography: FC<ITypography> = ({content, type}) => {
 
     return (
         <>
-            {typographyMap[type]}
+            {isLink ? (
+                <a className='link' href="https://google.com">
+                    {typographyMap[type]}
+                </a>
+            ) : (
+                <>
+                    {typographyMap[type]}
+                </>
+            )}
         </>
     )
 };
