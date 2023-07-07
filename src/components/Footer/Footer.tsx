@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import './Footer.scss';
 
-interface IFooter {
-}
-
-export const Footer: FC<IFooter> = () => {
+export const Footer: FC = () => {
     return (
-        <div></div>
+        <footer className='footer'>
+            <p className='footer__text'>©2023 Bookstore</p>
+            <p className='footer__text'>All rights reserved</p>
+        </footer>
     )
 };

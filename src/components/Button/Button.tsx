@@ -3,13 +3,13 @@ import { FC, } from 'react';
 import './Button.scss';
 
 interface IButton {
-    isDisabled: boolean;
+    isDisabled?: boolean;
     type: 'primary' | 'delete' ;
     content: string;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
-export const Button: FC<IButton> = ({content, isDisabled, onClick, type}) => {
+export const Button: FC<IButton> = ({content, isDisabled=false, onClick, type}) => {
 
  
     const buttonClass = `button button--${type} ${isDisabled ? 'disabled' : 'active'}`
