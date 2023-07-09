@@ -2,19 +2,18 @@ import { FC, useState } from 'react';
 
 import chevronDown from '../../icons/chevron-down.svg'
 
-import { ActionsCard } from '../../components/ActionsCard/ActionsCard';
 import { ArrowsButton } from '../../components/ArrowsButton/ArrowsButton';
 import { Button } from '../../components/Button/Button';
 import { FavoriteButton } from '../../components/FavoriteButton/FavoriteButton';
 import { MoreDetailse } from '../../components/MoreDetailse/MoreDetailse';
 import { Rating } from '../../components/Rating/Rating';
-import { Slider } from '../../components/Slider/Slider';
 import { Subscription } from '../../components/Subscription/Subscription';
-
 import { Typography } from '../../components/Typography/Typography';
 
+import arrowLeft from '../../icons/bigArrowLeft.svg'
 
 import './BookPage.scss';
+import { SimilarBooks } from '../../components/SimilarBooks/SimilarBooks';
 
 interface IBookPage {
     image: string;
@@ -29,12 +28,12 @@ export const BookPage: FC<IBookPage> = ({price, authors, image, title, year}) =>
     const [isOpen, setIsOpen] = useState(false);
    
     const handleClick = () => {
-        setIsOpen(true);
+        setIsOpen(!isOpen);
       };
 
     return (
-        <>
-            {/* Arrow */}
+        <div className='bookCard-page'>
+            <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" /></a>
             <Typography content={title} type={'H1'}/>
             
             {!isOpen ? (
@@ -111,23 +110,9 @@ export const BookPage: FC<IBookPage> = ({price, authors, image, title, year}) =>
                     <MoreDetailse/>
                 </div>
             )}
-            
-            
-            
-            
-
-            
-
             <Subscription/>
-
-            <div>
-                <div>
-                    <Typography content={'Similar books'} type={'H2'}/>
-                    <ArrowsButton/>
-                </div>
-                <Slider/>
-            </div>
+            <SimilarBooks/>
        
-       </>
+       </div>
     )
 };

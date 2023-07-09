@@ -1,6 +1,14 @@
+.bookCard-page{
+    margin-top: 72px;
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+}
+
 .bookCard{
     display: flex;
     gap: 128px;
+    margin-bottom: 72px;
 
     &__image {
         background-color: rgba(254, 233, 226, 1);
@@ -89,6 +97,10 @@
             font-size: 16px;
             line-height: 24px;
         }
+    }
+
+    &__slider{
+        margin: 72px 0;
     }
 }
 
