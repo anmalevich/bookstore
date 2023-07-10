@@ -2,19 +2,21 @@ import { FC, useState } from 'react';
 
 import chevronDown from '../../icons/chevron-down.svg'
 
-import { ActionsCard } from '../../components/ActionsCard/ActionsCard';
 import { ArrowsButton } from '../../components/ArrowsButton/ArrowsButton';
 import { Button } from '../../components/Button/Button';
 import { FavoriteButton } from '../../components/FavoriteButton/FavoriteButton';
 import { MoreDetailse } from '../../components/MoreDetailse/MoreDetailse';
 import { Rating } from '../../components/Rating/Rating';
-import { Slider } from '../../components/Slider/Slider';
 import { Subscription } from '../../components/Subscription/Subscription';
-
 import { Typography } from '../../components/Typography/Typography';
 
+import arrowLeft from '../../icons/bigArrowLeft.svg'
 
 import './BookPage.scss';
+import { SimilarBooks } from '../../components/SimilarBooks/SimilarBooks';
+import { BookCard } from '../../components/BookCard/BookCard';
+import { Product } from '../../components/mock/Product';
+import CartPage from '../CartPage/CartPage';
 
 interface IBookPage {
     image: string;
@@ -26,108 +28,55 @@ interface IBookPage {
 }
 
 export const BookPage: FC<IBookPage> = ({price, authors, image, title, year}) => {
-    const [isOpen, setIsOpen] = useState(false);
-   
-    const handleClick = () => {
-        setIsOpen(true);
-      };
+    const [page, setPage] = useState<'catalog' | 'cart'>('catalog');
+  const [cartItems, setCartItems] = useState<Product[]>([]);
+
+  const handleAddToCart = (product: Product) => {
+    setCartItems((prevItems) => [...prevItems, product]);
+    setPage('cart');
+  };
+
+  const handleGoToCatalog = () => {
+    setPage('catalog');
+  };
 
     return (
-        <>
-            {/* Arrow */}
+        <div className="catalog-page">
+             <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" /></a>
             <Typography content={title} type={'H1'}/>
-            
-            {!isOpen ? (
-                <div className='bookCard'>
-                <div className='bookCard__image'>
-                    <img src={image} alt="book" />
-                    <FavoriteButton isDisabled={false} type={'favorite'}/>
-                </div>
-                <div className='bookCard__info'>
-                    <div className='bookCard__info-bold'>
-                        {price}
-                        <Rating/>
-                    </div>
-                    <div className='bookCard__info-primary'>
-                        <div className='bookCard__info-primary__main'>
-                            <p>Authors</p>
-                            <p>Publisher</p>
-                            <p>Language</p>
-                            <p>Format</p>
-                        </div>
-                        <div className='bookCard__info-primary__bold'>
-                            <p>{authors}</p>
-                            <p>Apress, {year}</p>
-                            <p>English</p>
-                            <p>English Paper book / ebook (PDF)</p>
-                        </div>  
-                    </div>
-                    <button className='bookCard__drop-down' onClick={handleClick}>
-                        <p>More detalise</p> 
-                        <img src={chevronDown} alt="chevron" />
-                    </button>
-                    <div className='bookCard__button'>
-                        <Button type={'primary'} content={'Add to cart'}/>
-                        <p>Preview book</p>
-                    </div>
-                </div>
-        </div>
-            ) : (
-                <div>
-                    <div className='bookCard'>
-                    <div className='bookCard__image'>
-                        <img src={image} alt="book" />
-                        <FavoriteButton isDisabled={false} type={'favorite'}/>
-                    </div>
-                    <div className='bookCard__info'>
-                        <div className='bookCard__info-bold'>
-                            {price}
-                            <Rating/>
-                        </div>
-                        <div className='bookCard__info-primary'>
-                            <div className='bookCard__info-primary__main'>
-                                <p>Authors</p>
-                                <p>Publisher</p>
-                                <p>Language</p>
-                                <p>Format</p>
-                            </div>
-                            <div className='bookCard__info-primary__bold'>
-                                <p>{authors}</p>
-                                <p>Apress, {year}</p>
-                                <p>English</p>
-                                <p>English Paper book / ebook (PDF)</p>
-                            </div>  
-                        </div>
-                        <button className='bookCard__drop-down' onClick={handleClick}>
-                            <p>More detalise</p> 
-                            <img src={chevronDown} alt="chevron" />
-                        </button>
-                        <div className='bookCard__button'>
-                            <Button type={'primary'} content={'Add to cart'}/>
-                            <p>Preview book</p>
-                        </div>
-                    </div>
-            </div>
-                    <MoreDetailse/>
-                </div>
-            )}
-            
-            
-            
-            
+        {page === 'catalog' ? (
+            <>
+                <BookCard id={0} image={'https://itbook.store/img/books/9781617291609.png'} title={'MongoDB in Action, 2nd Edition'} price={32.10} year={2018} authors={'Julien Vehent'} addToCart={handleAddToCart} />
+                <Subscription/>
+                <SimilarBooks/>
+             </>
+        
+          ) : (
+          <div>
+            <button onClick={handleGoToCatalog}>Back to book page</button>
+            <CartPage cartItems={cartItems} setCartItems={setCartItems} />
+          </div>
+        )}
+      </div>
+         )
+        };
+        
 
+
+    //     <div className='bookCard-page'>
+    //         <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" /></a>
+    //         <Typography content={title} type={'H1'}/>
             
-
-            <Subscription/>
-
-            <div>
-                <div>
-                    <Typography content={'Similar books'} type={'H2'}/>
-                    <ArrowsButton/>
-                </div>
-                <Slider/>
-            </div>
+    //         {!isOpen ? (
+    //            <BookCard id={0} image={'https://itbook.store/img/books/9781617291609.png'} title={'MongoDB in Action, 2nd Edition'} price={32.10} year={2018} authors={'Julien Vehent'} addToCart={handleAddToCart} />
+    //         ) : (
+    //             <div>
+    //                 <BookCard id={0} image={'https://itbook.store/img/books/9781617291609.png'} title={'MongoDB in Action, 2nd Edition'} price={32.10} year={2018} authors={'Julien Vehent'} addToCart={handleAddToCart} />
+    //                 <MoreDetailse/>
+    //             </div>
+    //         )}
+    //         <Subscription/>
+    //         <SimilarBooks/>
        
-       </>
-    )
-};
+    //    </div>
+ 
