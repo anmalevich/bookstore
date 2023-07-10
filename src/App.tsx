@@ -20,13 +20,17 @@ import { ArrowsButton } from './components/ArrowsButton/ArrowsButton';
 import { MoreDetailse } from './components/MoreDetailse/MoreDetailse';
 import { BookPage } from './pages/BookPage/BookPage';
 
+import { BookCard } from './components/BookCard/BookCard';
+
 
 export const App = () => {
 
     return (
       <div>
         <PageTemplate>
+          
           <BookPage image={'https://itbook.store/img/books/9781617291609.png'} title={'MongoDB in Action, 2nd Edition'} price={'$32.10'} year={'2018'} authors={'Julien Vehent'}/>
+          
         </PageTemplate>
 {/*       
       <br />

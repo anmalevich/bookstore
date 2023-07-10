@@ -10,10 +10,9 @@ interface ISmallCard {
     authors: string;
     year: number;
     price: string | number;
-    color?: 'blue' | 'pink' | 'orange' | 'green';
 }
 
-export const SmallCard: FC<ISmallCard> = ({isbn13, title, image, authors, year, price, color}) => {
+export const SmallCard: FC<ISmallCard> = ({isbn13, title, image, authors, year, price}) => {
 
     return (
         <div className='small-card'>

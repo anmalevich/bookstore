@@ -1,0 +1,45 @@
+.cartItem{
+    display: flex;
+    width: 1120px;
+    gap: 130px;
+    align-items: center;
+
+    &__main{
+        display: flex;
+        gap: 32px;
+
+    }
+
+    &__image{
+        background-color: rgba(215, 228, 253, 1);
+        width: 256px;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__info{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__close{
+        color: rgba(49, 48, 55, 1);
+        background-color:#fff;
+        padding: 16px;
+        cursor: pointer;
+        border: none;
+
+        &:hover {
+            background-color: rgba(168, 168, 168, 1);
+            color: #fff;
+            transition: 0.3s;
+        }
+        &:focus {
+            background-color: rgba(168, 168, 168, 1);
+            color: #fff;
+            transition: 0.3s;
+        }
+    }
+}
+
