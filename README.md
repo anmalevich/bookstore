@@ -9,6 +9,12 @@ The app was written with React, Redux and Typescript, was bootstrapped with [Cre
 - Adding books you like to the basket, with the possibility of further purchase.
 - Adding the books you like to favorites, making it easier to find them in the future.
 
+## Technologies
+* React
+* Typescript
+* Redux
+* SASS
+
 ### Starting the project
 
 1. Clone the repository to your local machine.
