@@ -10,6 +10,8 @@ interface ICartItem {
   title: string;
   price: number;
   description?: string;
+  authors: string;
+  year: number;
   removeFromCart: (id: number) => void;
 // increaseQuantity: (id: number) => void;
 //   // decreaseQuantity: (id: number) => void;
@@ -17,7 +19,7 @@ interface ICartItem {
 }
 
 
-export const CartItem: FC<ICartItem> = ({ id, image, title, description, price, removeFromCart}) => {
+export const CartItem: FC<ICartItem> = ({ id, image, title, description, price, removeFromCart, authors, year}) => {
   const handleRemoveFromCart = () => {
     removeFromCart(id);
   };
@@ -32,23 +34,24 @@ export const CartItem: FC<ICartItem> = ({ id, image, title, description, price, 
 
   return (
     <div className="cartItem">
-      <div className='cartItem__main'>
-        <div className='cartItem__image'>
-          <img src={image} alt="" />
+        <div className='cartItem__main'>
+            <div className='cartItem__image'>
+                <img src={image} alt="" />
+            </div>
+            <div className='cartItem__info'>
+                <Typography content={title} type={'H3'}/>
+                <p>by {authors}, {year}</p>
+                {/* <Typography content={description} type={'B2'}/> */}
+                {/* <div>
+                  <button onClick={handleDecreaseQuantity}>-</button>
+                  <span>{quantity}</span>
+                  <button onClick={handleIncreaseQuantity}>+</button>
+                </div> */}
+            </div>
         </div>
-        <div className='cartItem__info'>
-          <Typography content={title} type={'H3'}/>
-          {/* <Typography content={description} type={'B2'}/> */}
-          {/* <div>
-            <button onClick={handleDecreaseQuantity}>-</button>
-            <span>{quantity}</span>
-            <button onClick={handleIncreaseQuantity}>+</button>
-          </div> */}
-        </div>
-      </div>
-      <Typography content={price} type={'H2'}/>
-      <button className='cartItem__close' onClick={handleRemoveFromCart}>X</button>
-      
+        <p className='cartItem__price'>${price}</p>
+        <button className='cartItem__close' onClick={handleRemoveFromCart}>X</button>
+        
     </div>
   );
 };

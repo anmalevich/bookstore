@@ -10,6 +10,7 @@ The app was written with React, Redux and Typescript, was bootstrapped with [Cre
 - Adding the books you like to favorites, making it easier to find them in the future.
 
 ## Technologies
+
 * React
 * Typescript
 * Redux

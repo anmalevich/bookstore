@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from '../../components/Button/Button';
 import CartItem from '../../components/CartItem/CartItem';
 import { Product } from '../../components/mock/Product';
+import { Typography } from '../../components/Typography/Typography';
+import arrowLeft from '../../icons/bigArrowLeft.svg'
 
+import './CartPage.scss'
 type CartPageProps = {
   cartItems: Product[];
   setCartItems: (items: Product[]) => void;
@@ -45,9 +49,9 @@ const CartPage = ({ cartItems, setCartItems }: CartPageProps) => {
   // };
 
 
-  const handleClearCart = () => {
-    setCartItems([]);
-  };
+  // const handleClearCart = () => {
+  //   setCartItems([]);
+  // };
 
   useEffect(() => {
     // Сохранение состояния корзины в локальном хранилище
@@ -56,7 +60,8 @@ const CartPage = ({ cartItems, setCartItems }: CartPageProps) => {
 
   return (
     <div className="cart-page">
-      <h2>Cart</h2>
+        <Typography content='Your cart' type={'H1'}/>
+      
       {cartItems.length === 0 ? (
         <p>Cart is empty</p>
       ) : (
@@ -67,6 +72,8 @@ const CartPage = ({ cartItems, setCartItems }: CartPageProps) => {
               id={item.id}
               title={item.title}
               price={item.price}
+              year={item.year}
+              authors={item.authors}
               // quantity={item.quantity}
               removeFromCart={handleRemoveFromCart} 
               image={item.image} 
@@ -74,11 +81,25 @@ const CartPage = ({ cartItems, setCartItems }: CartPageProps) => {
               // decreaseQuantity={handleDecreaseQuantity}
             />
           ))}
-          <div className="totals">
-            <p>Total Price: {totalPrice}$</p>
-            <p>Total Price with VAT: {totalPrice + 12}$</p>
+          <div className='cart-page__check-out'>
+              <div className="cart-page__check-out__main">
+                <div className="totals">
+                  <div className='totals__price'>
+                      <p>Sum total</p>
+                      <p>VAT</p>
+                      <p className='totals__total-price'>TOTAL:</p>
+                  </div>
+                  <div className='totals__vat'>
+                      <p>${totalPrice}</p>
+                      <p>$12.5</p>
+                      <p className='totals__total-price'>${totalPrice + 12.5}</p>
+                  </div>
+                </div>
+                  <Button type={'primary'} content={'Check out'}/>
+                  {/* <button onClick={handleClearCart}>Clear Cart</button> */}
+              </div>
+              
           </div>
-          <button onClick={handleClearCart}>Clear Cart</button>
         </div>
       )}
     </div>

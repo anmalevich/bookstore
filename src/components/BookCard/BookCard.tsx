@@ -36,6 +36,8 @@ export const BookCard: FC<IBookCard> = ({id, image, price, authors, year, addToC
           title,
           price,
           year,
+          authors,
+          
         };
         addToCart(product);
       };
@@ -52,7 +54,7 @@ export const BookCard: FC<IBookCard> = ({id, image, price, authors, year, addToC
                     </div>
                     <div className='bookCard__info'>
                         <div className='bookCard__info-bold'>
-                            {price}
+                            <p>${price}</p>
                             <Rating/>
                         </div>
                         <div className='bookCard__info-primary'>

@@ -28,7 +28,7 @@ interface IBookPage {
 }
 
 export const BookPage: FC<IBookPage> = ({price, authors, image, title, year}) => {
-    const [page, setPage] = useState<'catalog' | 'cart'>('catalog');
+    const [page, setPage] = useState<'bookPage' | 'cart'>('bookPage');
   const [cartItems, setCartItems] = useState<Product[]>([]);
 
   const handleAddToCart = (product: Product) => {
@@ -36,24 +36,24 @@ export const BookPage: FC<IBookPage> = ({price, authors, image, title, year}) =>
     setPage('cart');
   };
 
-  const handleGoToCatalog = () => {
-    setPage('catalog');
+  const handleGoToBookPage = () => {
+    setPage('bookPage');
   };
 
     return (
-        <div className="catalog-page">
-             <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" /></a>
-            <Typography content={title} type={'H1'}/>
-        {page === 'catalog' ? (
+        <div className="bookCard-page">
+        {page === 'bookPage' ? (
             <>
+                <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" /></a>
+                <Typography content={title} type={'H1'}/>
                 <BookCard id={0} image={'https://itbook.store/img/books/9781617291609.png'} title={'MongoDB in Action, 2nd Edition'} price={32.10} year={2018} authors={'Julien Vehent'} addToCart={handleAddToCart} />
                 <Subscription/>
                 <SimilarBooks/>
-             </>
+            </>
         
           ) : (
-          <div>
-            <button onClick={handleGoToCatalog}>Back to book page</button>
+          <div className='cartPage'>
+            <button onClick={handleGoToBookPage}><img src={arrowLeft} alt="arrowLeft" /></button>
             <CartPage cartItems={cartItems} setCartItems={setCartItems} />
           </div>
         )}
