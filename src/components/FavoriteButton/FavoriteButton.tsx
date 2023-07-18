@@ -6,9 +6,10 @@ import './FavoriteButton.scss';
 interface IFavoriteButton {
     isDisabled: boolean;
     type: 'favorite';
+    onClick?: (id: number) => void;
 }
 
-export const FavoriteButton: FC<IFavoriteButton> = ({ isDisabled,  type}) => {
+export const FavoriteButton: FC<IFavoriteButton> = ({ isDisabled,  type, onClick}) => {
 
     const [isOpen, setIsOpen] = useState(false); // let isOpen = false;
 

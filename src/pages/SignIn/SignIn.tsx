@@ -5,7 +5,7 @@ import { Button } from '../../components/Button/Button';
 import './SignIn.scss';
 import { RegistrationTab } from '../../components/RegistrationTab/RegistrationTab';
 
-export const SignUp: FC = () => {
+export const SignIn: FC = () => {
 
     const [tabs, setTabs] = useState([
         {id: 1, title: 'SIGN IN', isActive: true, isDisabled: false},

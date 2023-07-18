@@ -1,12 +1,5 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
-import chevronDown from '../../icons/chevron-down.svg'
-
-import { ArrowsButton } from '../../components/ArrowsButton/ArrowsButton';
-import { Button } from '../../components/Button/Button';
-import { FavoriteButton } from '../../components/FavoriteButton/FavoriteButton';
-import { MoreDetailse } from '../../components/MoreDetailse/MoreDetailse';
-import { Rating } from '../../components/Rating/Rating';
 import { Subscription } from '../../components/Subscription/Subscription';
 import { Typography } from '../../components/Typography/Typography';
 
@@ -17,49 +10,74 @@ import { SimilarBooks } from '../../components/SimilarBooks/SimilarBooks';
 import { BookCard } from '../../components/BookCard/BookCard';
 import { Product } from '../../components/mock/Product';
 import CartPage from '../CartPage/CartPage';
+import { ICard } from '../../interfaces/ICard';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { BOOK_CARD_URL } from '../../API';
 
-interface IBookPage {
-    image: string;
-    title: string;
-    price: string;
-    year: string;
-    authors: string;
-    
-}
 
-export const BookPage: FC<IBookPage> = ({price, authors, image, title, year}) => {
-    const [page, setPage] = useState<'catalog' | 'cart'>('catalog');
+
+export const BookPage = () => {
+  const [page, setPage] = useState<'bookPage' | 'cart'>('bookPage');
   const [cartItems, setCartItems] = useState<Product[]>([]);
+  // const [post, setPost] = useState<null | ICard>(null);
+  //   const [isLoading, setIsLoading] = useState(true);
 
+  //   useEffect(() => {
+  //       if (id) {
+  //           getPost({ id }).then((data) => {
+  //               setPost(data);
+  //               setIsLoading(false);
+  //           })
+  //       }
+  //   }, [id]);
+    
   const handleAddToCart = (product: Product) => {
     setCartItems((prevItems) => [...prevItems, product]);
     setPage('cart');
   };
 
-  const handleGoToCatalog = () => {
-    setPage('catalog');
+  const handleGoToBookPage = () => {
+    setPage('bookPage');
   };
 
+  const { id } = useParams();
+  const [book, setBook] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get(`${BOOK_CARD_URL}/${id}`)
+      .then(response => {
+        setBook(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [id]);
+
+
     return (
-        <div className="catalog-page">
-             <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" /></a>
-            <Typography content={title} type={'H1'}/>
-        {page === 'catalog' ? (
+       <div className="bookCard-page">
+        
+        {page === 'bookPage' ? (
             <>
-                <BookCard id={0} image={'https://itbook.store/img/books/9781617291609.png'} title={'MongoDB in Action, 2nd Edition'} price={32.10} year={2018} authors={'Julien Vehent'} addToCart={handleAddToCart} />
+                <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" onClick={() => navigate(`/`)} /></a>
+                <Typography content={book.title} type={'H1'}/>
+                
+                <BookCard />
+               
                 <Subscription/>
                 <SimilarBooks/>
-             </>
+            </>
         
           ) : (
-          <div>
-            <button onClick={handleGoToCatalog}>Back to book page</button>
+          <div className='cartPage'>
             <CartPage cartItems={cartItems} setCartItems={setCartItems} />
           </div>
         )}
       </div>
          )
-        };
+        }
         
 
 

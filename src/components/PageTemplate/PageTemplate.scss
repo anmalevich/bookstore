@@ -1,12 +1,11 @@
-.container {
+
+.all-page__template{
     max-width: 1120px;
     width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
-    row-gap: 72px;
-    padding: 0 5px;
-    // justify-content: center;
     
+    padding: 0 5px;
 }

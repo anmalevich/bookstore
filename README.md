@@ -10,6 +10,7 @@ The app was written with React, Redux and Typescript, was bootstrapped with [Cre
 - Adding the books you like to favorites, making it easier to find them in the future.
 
 ## Technologies
+
 * React
 * Typescript
 * Redux
@@ -24,3 +25,4 @@ The app was written with React, Redux and Typescript, was bootstrapped with [Cre
 5. Open http://localhost:3000 to get access to the app.
 
 ### Feel free to explore the code and provide any feedback or suggestions. If you want to improve the app or add new features, please open an issue or submit a pull request.
+
