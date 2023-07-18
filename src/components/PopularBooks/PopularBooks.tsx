@@ -38,37 +38,37 @@ export const PopularBooks: FC = () => {
             className={`card ${currentIndex === 0 ? 'active' : ''}`}
             style={{ transform: `translateX(${currentIndex * -100}%)` }}
             >
-            <SmallCard isbn13={0} title={'Securing DevOps'} image={'https://itbook.store/img/books/9781617294136.png'} authors={'Julien Vehent'} year={2018} price={'$26.98'}/>
+            <SmallCard />
             </div>
             <div
             className={`card ${currentIndex === 1 ? 'active' : ''}`}
             style={{ transform: `translateX(${currentIndex * -100}%)` }}
             >
-            <SmallCard isbn13={0} title={'Securing DevOps'} image={'https://itbook.store/img/books/9781617294136.png'} authors={'Julien Vehent'} year={2018} price={'$26.98'}/>
+             <SmallCard />
             </div>
             <div
             className={`card ${currentIndex === 2 ? 'active' : ''}`}
             style={{ transform: `translateX(${currentIndex * -100}%)` }}
             >
-            <SmallCard isbn13={0} title={'Securing DevOps'} image={'https://itbook.store/img/books/9781617294136.png'} authors={'Julien Vehent'} year={2018} price={'$26.98'}/>
+             <SmallCard />
             </div>
             <div
             className={`card ${currentIndex === 3 ? 'active' : ''}`}
             style={{ transform: `translateX(${currentIndex * -100}%)` }}
             >
-            <SmallCard isbn13={0} title={'Securing DevOps'} image={'https://itbook.store/img/books/9781617294136.png'} authors={'Julien Vehent'} year={2018} price={'$26.98'}/>
+             <SmallCard />
             </div>
             <div
             className={`card ${currentIndex === 4 ? 'active' : ''}`}
             style={{ transform: `translateX(${currentIndex * -100}%)` }}
             >
-            <SmallCard isbn13={0} title={'Securing DevOps'} image={'https://itbook.store/img/books/9781617294136.png'} authors={'Julien Vehent'} year={2018} price={'$26.98'}/>
+            <SmallCard />
             </div>
             <div
             className={`card ${currentIndex === 5 ? 'active' : ''}`}
             style={{ transform: `translateX(${currentIndex * -100}%)` }}
             >
-            <SmallCard isbn13={0} title={'Securing DevOps'} image={'https://itbook.store/img/books/9781617294136.png'} authors={'Julien Vehent'} year={2018} price={'$26.98'}/>
+             <SmallCard />
             </div>
             
       </div>

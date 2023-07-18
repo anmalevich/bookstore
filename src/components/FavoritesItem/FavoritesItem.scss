@@ -1,0 +1,45 @@
+.favoritesItem{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 48px 0;
+    border-bottom: 1px solid rgba(231, 231, 231, 1);
+
+    &__main{
+        display: flex;
+        gap: 32px;
+        align-items: center;
+    }
+
+    &__image{
+        background-color: peachpuff;
+        width: 256px;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__info{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        &__description{
+            font-family: "Helios", sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            color: rgba(168, 168, 168, 1);
+        }
+    }
+
+    &__rating{
+        display: flex;
+        gap: 187px;
+    }
+
+    &__price{
+        font-size: 40px;
+        line-height: 60px;
+        font-weight: 700;
+    }
+}

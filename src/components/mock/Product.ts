@@ -1,5 +1,6 @@
 export interface Product{
     id: number;
+    isbn13: string;
     image: string;
     title: string;
     price: number;

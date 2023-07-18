@@ -8,6 +8,11 @@
         width: 544px;
         display: flex;
         justify-content: center;
+        align-items: center;
+
+        img{
+            height: 90%;
+        }
     }
 
     // &__image-favorite{

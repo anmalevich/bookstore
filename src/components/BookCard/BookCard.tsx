@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useEffect, useState} from 'react';
 
 import { Button } from '../Button/Button';
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
@@ -7,54 +7,61 @@ import { Rating } from '../Rating/Rating';
 
 import chevronDown from '../../icons/chevron-down.svg'
 import './BookCard.scss';
-import { Product } from '../mock/Product';
 import { MoreDetailse } from '../MoreDetailse/MoreDetailse';
-
-interface IBookCard {
-id: number;
-  image: string;
-  title: string;
-  price: number;
-  authors: string;
-  year: number;
-  addToCart: (product: Product) => void;
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { BOOK_CARD_URL } from '../../API';
 
 
-}
-
-export const BookCard: FC<IBookCard> = ({id, image, price, authors, year, addToCart, title}) => {
+export const BookCard = () => {
+  
     const [isOpen, setIsOpen] = useState(false);
+    const [book,setBook] = useState({});
+    const { id } = useParams();
+    
+
+
+    useEffect(() => {
+        axios
+            .get(`${BOOK_CARD_URL}/${id}`)
+            .then (res => {
+            console.log(res.data)
+            setBook(res.data)
+        }).catch(err => console.log(err))
+    }, [id])
+
+
    
     const handleClick = () => {
         setIsOpen(!isOpen);
       };
     
       const handleAddToCart = () => {
-        const product = {
-          id,
-          image,
-          title,
-          price,
-          year,
-          authors,
+        // const product = {
+        //   id,
+        //   image,
+        //   title,
+        //   price,
+        //   year,
+        //   authors,
           
-        };
-        addToCart(product);
+        // };
+        // // addToCart(product);
       };
 
       return(
        <>
             
-            
+             
             {!isOpen ? (
                 <div className='bookCard'>
                     <div className='bookCard__image'>
-                        <img src={image} alt="book" />
+                        <img src={book?.image_url} alt="book" />
                         <FavoriteButton isDisabled={false} type={'favorite'}/>
                     </div>
                     <div className='bookCard__info'>
                         <div className='bookCard__info-bold'>
-                            <p>${price}</p>
+                            <p>$21</p>
                             <Rating/>
                         </div>
                         <div className='bookCard__info-primary'>
@@ -65,8 +72,8 @@ export const BookCard: FC<IBookCard> = ({id, image, price, authors, year, addToC
                                 <p>Format</p>
                             </div>
                             <div className='bookCard__info-primary__bold'>
-                                <p>{authors}</p>
-                                <p>Apress, {year}</p>
+                                <p>{book?.authors}</p>
+                                <p>Apress, 2018</p>
                                 <p>English</p>
                                 <p>English Paper book / ebook (PDF)</p>
                             </div>  
@@ -86,12 +93,12 @@ export const BookCard: FC<IBookCard> = ({id, image, price, authors, year, addToC
                 <div>
                     <div className='bookCard'>
                     <div className='bookCard__image'>
-                        <img src={image} alt="book" />
+                        <img src={book?.image_url} alt="book" />
                         <FavoriteButton isDisabled={false} type={'favorite'}/>
                     </div>
                     <div className='bookCard__info'>
                         <div className='bookCard__info-bold'>
-                            {price}
+                            $21
                             <Rating/>
                         </div>
                         <div className='bookCard__info-primary'>
@@ -102,8 +109,8 @@ export const BookCard: FC<IBookCard> = ({id, image, price, authors, year, addToC
                                 <p>Format</p>
                             </div>
                             <div className='bookCard__info-primary__bold'>
-                                <p>{authors}</p>
-                                <p>Apress, {year}</p>
+                                <p>{book?.authors}</p>
+                                <p>Apress, 2018</p>
                                 <p>English</p>
                                 <p>English Paper book / ebook (PDF)</p>
                             </div>  
@@ -121,6 +128,7 @@ export const BookCard: FC<IBookCard> = ({id, image, price, authors, year, addToC
                     <MoreDetailse/>
                 </div>
         )}
+        
         </>
         
       )}

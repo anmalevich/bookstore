@@ -1,5 +1,4 @@
 .slider {
-    margin-top: 72px;
     width: 100%;
     overflow: hidden;
     
@@ -18,6 +17,8 @@
       padding: 20px;
       box-sizing: border-box;
       transition: transform 0.5s ease-in-out;
+      display: flex;
+      flex-wrap: wrap;
   
       &.active {
         transform: translateX(0%);
@@ -37,4 +38,8 @@
         cursor: pointer;
       }
     }
+  }
+  .SmallCard{
+    display: flex;
+    gap: 32px;
   }

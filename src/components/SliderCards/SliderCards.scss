@@ -1,4 +1,4 @@
-.small-card {
+.slider-card {
     display: flex;
     flex-direction: column;
     max-width: 330px;
@@ -6,8 +6,8 @@
 
     &__box{
         display: flex;
-        flex-wrap: wrap;
-        gap: 54px;
+        flex-direction: row;
+        gap: 37px;
     }
     
 

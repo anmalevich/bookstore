@@ -6,12 +6,14 @@ import { Typography } from '../../components/Typography/Typography';
 import arrowLeft from '../../icons/bigArrowLeft.svg'
 
 import './CartPage.scss'
+
 type CartPageProps = {
   cartItems: Product[];
   setCartItems: (items: Product[]) => void;
 };
 
 const CartPage = ({ cartItems, setCartItems }: CartPageProps) => {
+  const [page, setPage] = useState<'bookPage' | 'cart'>('bookPage');
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
@@ -58,8 +60,12 @@ const CartPage = ({ cartItems, setCartItems }: CartPageProps) => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
+  const handleGoToBookPage = () => {
+    setPage('bookPage');
+  };
   return (
     <div className="cart-page">
+        <button onClick={handleGoToBookPage}><img src={arrowLeft} alt="arrowLeft" /></button>
         <Typography content='Your cart' type={'H1'}/>
       
       {cartItems.length === 0 ? (
