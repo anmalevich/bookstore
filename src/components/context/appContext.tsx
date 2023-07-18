@@ -22,11 +22,11 @@ export const useAppContext = (): AppContextValue => {
   return context;
 };
 
-interface AppProvider {
+interface IAppProvider {
   children: React.ReactNode;
 }
 
-export const AppProvider = ({ children }: AppProvider) => {
+export const AppProvider = ({ children }: IAppProvider) => {
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
 
   const addToFavorites = (item: FavoriteItem) => {

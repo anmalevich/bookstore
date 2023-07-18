@@ -11,21 +11,23 @@ import { MoreDetailse } from '../MoreDetailse/MoreDetailse';
 import { useNavigate, useParams} from 'react-router-dom';
 import axios from 'axios';
 import { API_URL, BOOK_CARD_URL } from '../../API';
+import { useAppContext } from '../context/appContext';
 
 
-type FavoriteBook = {
-    id: number;
-    title: string;
-    authors: string;
-    rating?: number;
-    image_url: string;
-  }
+
 
 export const BookCard = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [book,setBook] = useState({});
     const { id } = useParams();
-    const [favoriteBooks, setFavoriteBooks] = useState<FavoriteBook[]>([]);
+    const {favorites, addToFavorites, removeFromFavorites} = useAppContext();
+
+    console.log('Favorites are', favorites);
+
+    const favoritesChecker = (id: number): boolean => {
+        const boolean = favorites.some((book) => book.id ===id);
+        return boolean;
+    }
     
     useEffect(() => {
         axios
@@ -51,12 +53,12 @@ export const BookCard = () => {
     //     addToCart(book);
     //   };
 
-      const navigate = useNavigate();
+    //   const navigate = useNavigate();
 
-      const addToFavorites = () => {
-        setFavoriteBooks(prevBooks => [...prevBooks, book])
-        navigate('/favorites', {state: {book}});
-      }
+    //   const addToFavorites = () => {
+    //     setFavoriteBooks(prevBooks => [...prevBooks, book])
+    //     navigate('/favorites', {state: {book}});
+    //   }
 
       return(
        <div>
@@ -94,8 +96,16 @@ export const BookCard = () => {
                                 <img src={chevronDown} alt="chevron" />
                             </button>
                             <div className='bookCard__button'>
-                                <Button onClick={() => navigate(`/book_favs/`)} type={'primary'} content={'Add to cart'}/>
-                                <Button onClick={addToFavorites} type={'primary'} content={'Add to Favorites'}/>
+                                <Button  type={'primary'} content={'Add to cart'}/>
+     
+                        
+                                {favoritesChecker(book.id) ?
+                                <Button onClick= {()=>{removeFromFavorites(book.id)}} type={'primary'} content={'Remove from Favorites'}/>
+                                : 
+                                <Button onClick= {()=>{addToFavorites(book)}} type={'primary'} content={'Add to Favorites'}/>
+                                } 
+                              
+                                
                             </div>
                         </div>
                     </div>

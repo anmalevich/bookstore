@@ -61,7 +61,7 @@ export const BookPage = () => {
         
         {page === 'bookPage' ? (
             <>
-                <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" onClick={() => navigate(`/`)} /></a>
+                <button onClick={() => navigate(`/new-releases`)}><img src={arrowLeft} alt="arrowLeft" /></button>
                 <Typography content={book.title} type={'H1'}/>
                 
                 <BookCard />
@@ -79,22 +79,3 @@ export const BookPage = () => {
          )
         }
         
-
-
-    //     <div className='bookCard-page'>
-    //         <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" /></a>
-    //         <Typography content={title} type={'H1'}/>
-            
-    //         {!isOpen ? (
-    //            <BookCard id={0} image={'https://itbook.store/img/books/9781617291609.png'} title={'MongoDB in Action, 2nd Edition'} price={32.10} year={2018} authors={'Julien Vehent'} addToCart={handleAddToCart} />
-    //         ) : (
-    //             <div>
-    //                 <BookCard id={0} image={'https://itbook.store/img/books/9781617291609.png'} title={'MongoDB in Action, 2nd Edition'} price={32.10} year={2018} authors={'Julien Vehent'} addToCart={handleAddToCart} />
-    //                 <MoreDetailse/>
-    //             </div>
-    //         )}
-    //         <Subscription/>
-    //         <SimilarBooks/>
-       
-    //    </div>
- 
