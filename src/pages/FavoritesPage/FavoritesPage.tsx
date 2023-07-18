@@ -37,11 +37,12 @@ export const FavoritesPage = () => {
 
       return (
         <>
+        <button onClick={() => navigate(`/new-releases`)}><img src={arrowLeft} alt="arrowLeft" /></button>
+           < Typography content={'Favorites'} type={'H1'} />
           {favorites.length > 0 ? (
             favorites.map((book) => (
               <div className='fav-page' key={book?.id}>
-                <button onClick={() => navigate(`/books/${book?.id}`)}><img src={arrowLeft} alt="arrowLeft" /></button>
-                <Typography content={'Favorites'} type={'H1'} />
+                
                 <div className="favoritesItem" key={book?.id}>
                   <div className='favoritesItem__main' >
                     <div className='favoritesItem__image'>
@@ -66,7 +67,6 @@ export const FavoritesPage = () => {
             ))
           ) : (
             <div>
-            <Typography content={'Favorites'} type={'H1'} />
             <Typography content={"You don't have any favorite books yet!"} type={'H3'} />
             </div>
           )}

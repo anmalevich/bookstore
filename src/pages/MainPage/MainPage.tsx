@@ -1,102 +1,67 @@
-import { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SmallCard } from '../../components/SmallCard/SmallCard';
 import { Subscription } from '../../components/Subscription/Subscription';
 import { Typography } from '../../components/Typography/Typography';
-
-import './MainPage.scss';
-import { Spinner } from '../../components/Spinner/Spinner';
+import {Pagination} from '../../components/Pagination/Pagination';
+import { API_URL } from '../../API';
 import axios from 'axios';
+import { Spinner } from '../../components/Spinner/Spinner';
+import './MainPage.scss';
+import { useNavigate } from 'react-router-dom';
 
+interface Book {
+  id: number;
+  title: string;
+  authors: string;
+  image_url: string;
+}
 
+export const MainPage: React.FC = () => {
+  const [books, setBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [booksPerPage] = useState(9);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchBooks = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.get<Book[]>(API_URL);
+        setBooks(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    };
 
-export const MainPage = () => {
-  const [cards, setCards] = useState<Card[]>([]);
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const [totalPages, setTotalPages] = useState(1);
+    fetchBooks();
+  }, []);
 
-//   useEffect(() => {
-//     fetchCards();
-//   }, [currentPage]);
+  const pageCount = Math.ceil(books.length / booksPerPage);
 
-//   const fetchCards = async () => {
-//     try {
-//       const response = await axios.get(`/api/cards?page=${currentPage}&limit=9`);
-//       setCards(response.data.cards);
-//       setTotalPages(response.data.totalPages);
-//     } catch (error) {
-//       console.error('Error fetching cards:', error);
-//     }
-//   };
+  const handlePageChange = (selectedPage: { selected: number }) => {
+    setCurrentPage(selectedPage.selected);
+  };
 
-//   const handlePageChange = (page: number) => {
-//     setCurrentPage(page);
-//   };
+  const indexOfLastBook = (currentPage + 1) * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
 
-//   const renderCards = () => {
-//     return cards.map((card) => (
-//       <div className="card" key={card.id}>
-//         <h3>{card.title}</h3>
-//         {/* Остальное содержимое карточки */}
-//       </div>
-//     ));
-//   };
-
-//   const renderPagination = () => {
-//     const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
-
-//     return (
-//       <div className="pagination">
-//         <button
-//           className="prev"
-//           onClick={() => handlePageChange(currentPage - 1)}
-//           disabled={currentPage === 1}
-//         >
-//           &lt;
-//         </button>
-
-//         {pageNumbers.map((page) => (
-//           <button
-//             key={page}
-//             className={page === currentPage ? 'active' : ''}
-//             onClick={() => handlePageChange(page)}
-//           >
-//             {page}
-//           </button>
-//         ))}
-
-//         <button
-//           className="next"
-//           onClick={() => handlePageChange(currentPage + 1)}
-//           disabled={currentPage === totalPages}
-//         >
-//           &gt;
-//         </button>
-//       </div>
-//     );
-//   };
-
-//   return (
-//     <div>
-//       <h2>Карточки</h2>
-//       <div className="card-container">{renderCards()}</div>
-//       {renderPagination()}
-//     </div>
-//   );
-// };
-    
-    return (
-        <div className='main'>
-            <Typography content={'New releases books'} type={'H1'}/>
-            {/* {isLoading ? <Spinner /> : ( */}
-                <div className='blog__tabs'>
-                <SmallCard />
-               
-                    
-                    {/* Пагинация */}
-                    <Subscription/>
-                </div>
-            {/* )} */}
-        </div> 
-    )
+  return (
+    <div className="main">
+      <Typography content={'New releases books'} type={'H1'} />
+      <div className="blog__tabs">
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <SmallCard books={currentBooks} onClick={() => navigate(`/books/${book.id}`)}/>
+            <Pagination pageCount={pageCount} onPageChange={handlePageChange} />
+          </>
+        )}
+        <Subscription />
+      </div>
+    </div>
+  );
 };

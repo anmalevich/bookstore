@@ -1,29 +1,30 @@
 
-import { useEffect, useState } from 'react';
-
+import React from 'react';
 import { Rating } from '../Rating/Rating';
 import { Typography } from '../Typography/Typography';
-import { API_URL } from '../../API';
-import axios from 'axios';
-import './SmallCard.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+import './SmallCard.scss'
+
+interface Book {
+  id: number;
+  title: string;
+  authors: string;
+  image_url: string;
+}
+
+interface SmallCardProps {
+  books: Book[];
+  onClick?: () => void;
+}
+
+export const SmallCard: React.FC<SmallCardProps> = ({ books }) => {
+  const navigate = useNavigate();
 
   
-  export const SmallCard = () => {
-    const [books,setBooks] = useState([]);
 
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        axios.get(API_URL).then (res => {
-            console.log(res.data)
-            setBooks(res.data)
-        }).catch(err => console.log(err))
-    }, [])
-
-    return (
-        <div className='small-card__box'>
+  return (
+     <div className='small-card__box'>
         {books.map((book) => (
         <div className='small-card' key={book.id}>
 
@@ -44,5 +45,6 @@ import { Link, useNavigate } from 'react-router-dom';
         </div>
          ))}
         </div>
-    )
+    
+  );
 };

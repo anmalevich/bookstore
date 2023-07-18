@@ -19,28 +19,6 @@ import { BOOK_CARD_URL } from '../../API';
 
 export const BookPage = () => {
   const [page, setPage] = useState<'bookPage' | 'cart'>('bookPage');
-  const [cartItems, setCartItems] = useState<Product[]>([]);
-  // const [post, setPost] = useState<null | ICard>(null);
-  //   const [isLoading, setIsLoading] = useState(true);
-
-  //   useEffect(() => {
-  //       if (id) {
-  //           getPost({ id }).then((data) => {
-  //               setPost(data);
-  //               setIsLoading(false);
-  //           })
-  //       }
-  //   }, [id]);
-    
-  const handleAddToCart = (product: Product) => {
-    setCartItems((prevItems) => [...prevItems, product]);
-    setPage('cart');
-  };
-
-  const handleGoToBookPage = () => {
-    setPage('bookPage');
-  };
-
   const { id } = useParams();
   const [book, setBook] = useState({});
   const navigate = useNavigate();
