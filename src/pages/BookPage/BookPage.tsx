@@ -13,6 +13,7 @@ import CartPage from '../CartPage/CartPage';
 import { ICard } from '../../interfaces/ICard';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { BOOK_CARD_URL } from '../../API';
 
 
 
@@ -45,7 +46,7 @@ export const BookPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://example-data.draftbit.com/books/${id}`)
+    axios.get(`${BOOK_CARD_URL}/${id}`)
       .then(response => {
         setBook(response.data);
       })
@@ -57,11 +58,14 @@ export const BookPage = () => {
 
     return (
        <div className="bookCard-page">
+        
         {page === 'bookPage' ? (
             <>
                 <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" onClick={() => navigate(`/`)} /></a>
                 <Typography content={book.title} type={'H1'}/>
+                
                 <BookCard />
+               
                 <Subscription/>
                 <SimilarBooks/>
             </>

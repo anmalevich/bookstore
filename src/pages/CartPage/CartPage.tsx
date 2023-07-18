@@ -102,6 +102,7 @@ const CartPage = ({ cartItems, setCartItems }: CartPageProps) => {
                   </div>
                 </div>
                   <Button type={'primary'} content={'Check out'}/>
+                  
                   {/* <button onClick={handleClearCart}>Clear Cart</button> */}
               </div>
               

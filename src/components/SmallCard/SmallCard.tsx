@@ -9,22 +9,11 @@ import './SmallCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-// interface ISmallCard {
-//     isbn13: number;
-//     title: string;
-//     image: string;
-//     authors: string;
-//     year: number;
-//     price: string | number;
-// }
-
   
   export const SmallCard = () => {
     const [books,setBooks] = useState([]);
 
     const navigate = useNavigate();
-    
-
 
     useEffect(() => {
         axios.get(API_URL).then (res => {
@@ -32,8 +21,6 @@ import { Link, useNavigate } from 'react-router-dom';
             setBooks(res.data)
         }).catch(err => console.log(err))
     }, [])
-
-  
 
     return (
         <div className='small-card__box'>

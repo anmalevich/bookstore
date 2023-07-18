@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import { App } from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import AppProvider from './components/context/appContext';
 
 
 const root = ReactDOM.createRoot(
@@ -13,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
  
     <BrowserRouter>
+    <AppProvider>
       <App />
+      </AppProvider>
     </BrowserRouter>
  
 );
