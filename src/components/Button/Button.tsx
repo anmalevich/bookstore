@@ -11,7 +11,6 @@ interface IButton {
 
 export const Button: FC<IButton> = ({content, isDisabled=false, onClick, type}) => {
 
- 
     const buttonClass = `button button--${type} ${isDisabled ? 'disabled' : 'active'}`
 
     return (

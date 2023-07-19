@@ -1,40 +1,45 @@
 .slider {
-    
-    width: 100%;
-    overflow: hidden;
-    
-    &__head{
-        display: flex;
-        justify-content: space-between;
-    }
-    .cards {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
+  width: 100%;
+  overflow: hidden;
   
-    .card {
-      flex: 0 0 33.333333%;
-      width: 100%;
-      padding: 20px;
-      box-sizing: border-box;
-      transition: transform 0.5s ease-in-out;
-  
-      &.active {
-        transform: translateX(0%);
-      }
-    }
-  
-    .controls {
-      
+  &__head{
       display: flex;
       justify-content: space-between;
-      padding: 10px;
-  
-      button {
-        font-size: 18px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-      }
+  }
+  .cards {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .card {
+    flex: 0 0 33.333333%;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+    flex-wrap: wrap;
+
+    &.active {
+      transform: translateX(0%);
     }
   }
+
+  .controls {
+    
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    button {
+      font-size: 18px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+.SmallCard{
+  display: flex;
+  gap: 32px;
+}

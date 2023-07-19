@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Button/Button';
 import { useAppContext } from '../../components/context/appContext';
+import { PopularBooks } from '../../components/PopularBooks/PopularBooks';
 import { Typography } from '../../components/Typography/Typography';
 
 import arrowLeft from '../../icons/bigArrowLeft.svg'
@@ -68,6 +69,7 @@ const CartPage = () => {
           </div>
         </div>
       )}
+      <PopularBooks/>
     </div>
   );
 };

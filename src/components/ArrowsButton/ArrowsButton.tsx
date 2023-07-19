@@ -5,7 +5,6 @@ import arrowRight from '../../icons/arrowRight.svg'
 
 import './ArrowsButton.scss';
 
-
 export const ArrowsButton: FC = () => {
     const [activeButton, setActiveButton] = useState('');
     

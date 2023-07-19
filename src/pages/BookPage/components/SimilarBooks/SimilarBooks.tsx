@@ -2,11 +2,12 @@ import { FC, useState } from 'react';
 
 
 import arrowLeft from '../../icons/arrowLeft.svg'
+import { Typography } from '../../../../components/Typography/Typography';
+import { SliderCards } from '../../../../components/SliderCards/SliderCards';
 import arrowRight from '../../icons/arrowRight.svg'
 
 import './SimilarBooks.scss';
-import { Typography } from '../Typography/Typography';
-import { SliderCards } from '../SliderCards/SliderCards';
+
 
 
 

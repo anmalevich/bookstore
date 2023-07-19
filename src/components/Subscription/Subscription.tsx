@@ -2,18 +2,7 @@ import { FC } from 'react';
 import { Typography } from '../Typography/Typography';
 import './Subscription.scss';
 
-interface ISubscription {
-    
-}
-
-export const Subscription: FC<ISubscription> = () => {
-
-    // const [activeButton, setActiveButton] = useState('');
-
-    // const handleButtonClick = (buttonName : string) => {
-    //     setActiveButton(buttonName);
-    // };
-    
+export const Subscription = () => {
 
     return (
         <div className='subscription'>
