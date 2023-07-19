@@ -1,13 +1,11 @@
 import { FC, useState } from 'react';
 
-import { SmallCard } from '../SmallCard/SmallCard';
-
 import arrowLeft from '../../icons/arrowLeft.svg'
 import arrowRight from '../../icons/arrowRight.svg'
+import { Typography } from '../Typography/Typography';
+import { SliderCards } from '../SliderCards/SliderCards';
 
 import './PopularBooks.scss';
-import { Typography } from '../Typography/Typography';
-
 
 
 export const PopularBooks: FC = () => {
@@ -38,39 +36,8 @@ export const PopularBooks: FC = () => {
             className={`card ${currentIndex === 0 ? 'active' : ''}`}
             style={{ transform: `translateX(${currentIndex * -100}%)` }}
             >
-            <SmallCard />
+            <SliderCards />
             </div>
-            <div
-            className={`card ${currentIndex === 1 ? 'active' : ''}`}
-            style={{ transform: `translateX(${currentIndex * -100}%)` }}
-            >
-             <SmallCard />
-            </div>
-            <div
-            className={`card ${currentIndex === 2 ? 'active' : ''}`}
-            style={{ transform: `translateX(${currentIndex * -100}%)` }}
-            >
-             <SmallCard />
-            </div>
-            <div
-            className={`card ${currentIndex === 3 ? 'active' : ''}`}
-            style={{ transform: `translateX(${currentIndex * -100}%)` }}
-            >
-             <SmallCard />
-            </div>
-            <div
-            className={`card ${currentIndex === 4 ? 'active' : ''}`}
-            style={{ transform: `translateX(${currentIndex * -100}%)` }}
-            >
-            <SmallCard />
-            </div>
-            <div
-            className={`card ${currentIndex === 5 ? 'active' : ''}`}
-            style={{ transform: `translateX(${currentIndex * -100}%)` }}
-            >
-             <SmallCard />
-            </div>
-            
       </div>
       
     </div>

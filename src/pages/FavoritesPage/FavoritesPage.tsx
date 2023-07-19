@@ -1,25 +1,13 @@
-import axios from 'axios';
-import { FC, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import ReactStars from 'react-stars';
-import { isTemplateMiddle } from 'typescript';
-import { BOOK_CARD_URL } from '../../API';
 import { Button } from '../../components/Button/Button';
 import { useAppContext } from '../../components/context/appContext';
-import { FavoritesItem } from '../../components/FavoritesItem/FavoritesItem';
-import { Product } from '../../components/mock/Product';
-import { Rating } from '../../components/Rating/Rating';
 import { Typography } from '../../components/Typography/Typography';
 import redFavorite from '../../icons/FilledFavorites.svg';
-
 import arrowLeft from '../../icons/bigArrowLeft.svg'
 
 import './FavoritesPage.scss';
-
-// interface IFavoritesPage {
-// favItems: Product[];
-// setFavItems: (items: Product[]) => void;
-// }
+import { PopularBooks } from '../../components/PopularBooks/PopularBooks';
 
 
 
@@ -60,7 +48,7 @@ export const FavoritesPage = () => {
                                 value = {book?.rating}
                                 size={24}
                                 color1={'#cccccc'}
-                                color2={'#FFFF00'}
+                                color2={'#FEBE00'}
                                 edit={false}
                             />
                       </div>
@@ -68,7 +56,6 @@ export const FavoritesPage = () => {
                   </div>
                   {favoritesChecker(book.id) ? (
                     <button className='red-favorite'><img src={redFavorite} alt="RedFavorite" onClick={() => removeFromFavorites(book.id)}/></button>
-                   
                   ) : (
                     <Button onClick={() => addToFavorites(book)} type={'primary'} content={'Add to Favorites'} />
                   )}
@@ -80,6 +67,7 @@ export const FavoritesPage = () => {
             <Typography content={"You don't have any favorite books yet!"} type={'H3'} />
             </div>
           )}
+          <PopularBooks/>
         </>
       );
     }

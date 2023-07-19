@@ -10,8 +10,14 @@
 
     &__text{
         margin-left: 15px;
-        font-size: 28px;
+        font-size: 36px;
         font-weight: 700;
+    }
+
+    &__text-btn{
+        border: none;
+        background-color: #fff;
+        cursor: pointer;
     }
 
     &__pages{
@@ -31,14 +37,17 @@
 
         &:active {
             border-bottom: 3px solid  rgba(252, 133, 127, 1);
+            color: rgba(252, 133, 127, 1);
         }
 
-        &.active {
-            &.focus{
-                border-bottom: 3px solid  rgba(91, 90, 98, 1);
-            }
-        }
+        // &.active {
+        //     &.focus{
+        //         border-bottom: 3px solid  rgba(91, 90, 98, 1);
+        //     }
+        // }
 
     }
 
 }
+
+

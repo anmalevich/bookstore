@@ -11,8 +11,6 @@ export const MoreDetailse = () => {
 
     const [book,setBook] = useState({});
     const { id } = useParams();
-    
-
 
     useEffect(() => {
         axios

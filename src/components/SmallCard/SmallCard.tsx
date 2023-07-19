@@ -1,6 +1,4 @@
-
 import React from 'react';
-import { Rating } from '../Rating/Rating';
 import { Typography } from '../Typography/Typography';
 import { useNavigate } from 'react-router-dom';
 
@@ -46,7 +44,7 @@ export const SmallCard: React.FC<SmallCardProps> = ({ books }) => {
                                 value = {book.rating}
                                 size={24}
                                 color1={'#cccccc'}
-                                color2={'#FFFF00'}
+                                color2={'#FEBE00'}
                                 edit={false}
                             />
                         </div>

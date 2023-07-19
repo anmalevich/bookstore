@@ -1,32 +1,19 @@
-
 import { useEffect, useState } from 'react';
-
 
 import { Typography } from '../Typography/Typography';
 import { API_URL } from '../../API';
-import axios from 'axios';
-import './SliderCards.scss';
 import { useNavigate } from 'react-router-dom';
 import ReactStars from 'react-stars';
 
+import axios from 'axios';
+import './SliderCards.scss';
 
-// interface ISmallCard {
-//     isbn13: number;
-//     title: string;
-//     image: string;
-//     authors: string;
-//     year: number;
-//     price: string | number;
-// }
 
-  
   export const SliderCards = () => {
     const [books,setBooks] = useState([]);
 
     const navigate = useNavigate();
     
-
-
     useEffect(() => {
         axios.get(API_URL).then (res => {
             console.log(res.data)
@@ -34,7 +21,7 @@ import ReactStars from 'react-stars';
         }).catch(err => console.log(err))
     }, [])
 
-  
+
 
     return (
         <div className='slider-card__box'>
@@ -57,7 +44,7 @@ import ReactStars from 'react-stars';
                                 value = {book.rating}
                                 size={24}
                                 color1={'#cccccc'}
-                                color2={'#FFFF00'}
+                                color2={'#FEBE00'}
                                 edit={false}
                             />
                         </div>
