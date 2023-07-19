@@ -31,14 +31,17 @@
 
         &:active {
             border-bottom: 3px solid  rgba(252, 133, 127, 1);
+            color: rgba(252, 133, 127, 1);
         }
 
-        &.active {
-            &.focus{
-                border-bottom: 3px solid  rgba(91, 90, 98, 1);
-            }
-        }
+        // &.active {
+        //     &.focus{
+        //         border-bottom: 3px solid  rgba(91, 90, 98, 1);
+        //     }
+        // }
 
     }
 
 }
+
+

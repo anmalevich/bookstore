@@ -1,64 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Button/Button';
-import CartItem from '../../components/CartItem/CartItem';
 import { useAppContext } from '../../components/context/appContext';
-import { Product } from '../../components/mock/Product';
 import { Typography } from '../../components/Typography/Typography';
+
 import arrowLeft from '../../icons/bigArrowLeft.svg'
 
 import './CartPage.scss'
 
-// type CartPageProps = {
-//   cartItems: Product[];
-//   setCartItems: (items: Product[]) => void;
-// };
-
 const CartPage = () => {
   const [page, setPage] = useState<'bookPage' | 'cart'>('bookPage');
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-
-  // useEffect(() => {
-  //   // При обновлении корзины пересчитываем итоговую цену
-  //   const calculateTotalPrice = () => {
-  //     const total = cartItems.reduce((sum, item) => sum + item.price, 0);
-  //     setTotalPrice(total);
-  //   };
-  //   calculateTotalPrice();
-  // }, [cartItems]);
-
-  // const handleRemoveFromCart = (id: number) => {
-  //   const updatedItems = cartItems.filter((item) => item.id !== id);
-  //   setCartItems(updatedItems);
-  // };
-
+  // const [totalPrice, setTotalPrice] = useState<number>(0);
   const {cart, addToCart, removeFromCart} = useAppContext();
+  const navigate = useNavigate();
+  const bookPrice = 21;
+  const totalPrice = cart.length * bookPrice;
 
-    console.log('Cart are', cart);
+  console.log('Cart are', cart);
 
-    const cartChecker = (id: number): boolean => {
-        const boolean = cart.some((book) => book.id ===id);
-        return boolean;
-    }
-    
-    const navigate = useNavigate();
-
-
-  // useEffect(() => {
-  //   // Сохранение состояния корзины в локальном хранилище
-  //   localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  // }, [cartItems]);
-
-  const handleGoToBookPage = () => {
-    setPage('bookPage');
-  };
+  const cartChecker = (id: number): boolean => {
+    const boolean = cart.some((book) => book.id ===id);
+    return boolean;
+  }
+  
   return (
     <div className="cart-page">
         <button className='arrow-left' onClick={() => navigate(`/new-releases`)}><img src={arrowLeft} alt="arrowLeft" /></button>
         <Typography content='Your cart' type={'H1'}/>
       
       {cart.length === 0 ? (
-        <p>Cart is empty</p>
+        <Typography content={"Your cart is empty!"} type={'H3'} />
       ) : (
         <div>
           {cart.map((book) => (
@@ -72,17 +43,10 @@ const CartPage = () => {
                         <p>by {book?.authors}, 2018</p>
                         <p>{book?.format}</p>
                         <p>{book?.genres}</p>
-                        {/* <Typography content={description} type={'B2'}/> */}
-                        {/* <div>
-                          <button onClick={handleDecreaseQuantity}>-</button>
-                          <span>{quantity}</span>
-                          <button onClick={handleIncreaseQuantity}>+</button>
-                        </div> */}
                     </div>
                 </div>
-             <p className='cartItem__price'>$21</p>
-             <button className='cartItem__close' onClick= {()=>{removeFromCart(book?.id)}}>X</button>
-             
+             <p className='cartItem__price'><span>$</span>21</p>
+             <button className='cartItem__close' onClick= {()=>{removeFromCart(book?.id)}}>X</button> 
          </div>
           ))}
           <div className='cart-page__check-out'>
@@ -100,10 +64,7 @@ const CartPage = () => {
                   </div>
                 </div>
                   <Button type={'primary'} content={'Check out'}/>
-                  
-                  {/* <button onClick={handleClearCart}>Clear Cart</button> */}
               </div>
-              
           </div>
         </div>
       )}

@@ -16,11 +16,6 @@ import arrowLeft from '../../icons/bigArrowLeft.svg'
 
 import './FavoritesPage.scss';
 
-// interface IFavoritesPage {
-// favItems: Product[];
-// setFavItems: (items: Product[]) => void;
-// }
-
 
 
 export const FavoritesPage = () => {
@@ -68,7 +63,6 @@ export const FavoritesPage = () => {
                   </div>
                   {favoritesChecker(book.id) ? (
                     <button className='red-favorite'><img src={redFavorite} alt="RedFavorite" onClick={() => removeFromFavorites(book.id)}/></button>
-                   
                   ) : (
                     <Button onClick={() => addToFavorites(book)} type={'primary'} content={'Add to Favorites'} />
                   )}

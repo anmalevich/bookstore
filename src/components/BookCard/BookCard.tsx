@@ -12,7 +12,8 @@ import axios from 'axios';
 import { API_URL, BOOK_CARD_URL } from '../../API';
 import { useAppContext } from '../context/appContext';
 import ReactStars from 'react-stars';
-
+import redFavorite from '../../icons/FilledFavorites.svg';
+import emptyFavorite from '../../icons/Favorites.svg';
 
 
 
@@ -105,10 +106,20 @@ export const BookCard = () => {
                                     <p>{book?.format}</p>
                                 </div>  
                             </div>
-                            <button className='bookCard__drop-down' onClick={handleClick}>
-                                <p>More detalise</p> 
-                                <img src={chevronDown} alt="chevron" />
-                            </button>
+                            <div className='bookCard__btns'>
+                                <button className='bookCard__drop-down' onClick={handleClick}>
+                                    <p>More detalise</p> 
+                                    <img src={chevronDown} alt="chevron" />
+                                </button>
+                                <div className='bookCard__favorites'>
+                                {favoritesChecker(book.id) ?
+                                <button className='red-favorite'><img src={redFavorite} alt="RedFavorite" onClick={() => removeFromFavorites(book.id)}/></button>
+                                : 
+                                <button className='white-favorite'><img src={emptyFavorite} alt="RedFavorite"onClick= {()=>{addToFavorites(book)}}/></button>
+                                } 
+                                </div>
+                            </div>
+                            
                             <div className='bookCard__button'>
                                 
                                 {cartChecker(book.id) ?
@@ -117,15 +128,7 @@ export const BookCard = () => {
                                 <Button onClick= {()=>{addToCart(book)}} type={'primary'} content={'Add to Cart'}/>
                                 } 
                         </div>
-                        <div>
-                                {favoritesChecker(book.id) ?
-                                <Button onClick= {()=>{removeFromFavorites(book.id)}} type={'primary'} content={'Remove from Favorites'}/>
-                                : 
-                                <Button onClick= {()=>{addToFavorites(book)}} type={'primary'} content={'Add to Favorites'}/>
-                                } 
-                              
-                                
-                            </div>
+                        
                         </div>
                     </div>
                     </div>
