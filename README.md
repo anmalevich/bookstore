@@ -15,6 +15,9 @@ The app was written with React, Redux and Typescript, was bootstrapped with [Cre
 * Typescript
 * Redux
 * SASS
+* react-stars
+* react-paginate
+
 
 ### Starting the project
 
