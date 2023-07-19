@@ -2,7 +2,6 @@ import { useEffect, useState} from 'react';
 
 import { Button } from '../Button/Button';
 
-import { Rating } from '../Rating/Rating';
 
 
 import chevronDown from '../../icons/chevron-down.svg'
@@ -11,21 +10,31 @@ import { MoreDetailse } from '../MoreDetailse/MoreDetailse';
 import { useNavigate, useParams} from 'react-router-dom';
 import axios from 'axios';
 import { API_URL, BOOK_CARD_URL } from '../../API';
+import { useAppContext } from '../context/appContext';
+import ReactStars from 'react-stars';
 
 
-type FavoriteBook = {
-    id: number;
-    title: string;
-    authors: string;
-    rating?: number;
-    image_url: string;
-  }
+
 
 export const BookCard = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [book,setBook] = useState({});
     const { id } = useParams();
-    const [favoriteBooks, setFavoriteBooks] = useState<FavoriteBook[]>([]);
+    const {favorites, addToFavorites, removeFromFavorites} = useAppContext();
+    const {cart, addToCart, removeFromCart} = useAppContext();
+
+
+    console.log('Favorites are', favorites);
+
+    const favoritesChecker = (id: number): boolean => {
+        const boolean = favorites.some((book) => book.id ===id);
+        return boolean;
+    }
+
+    const cartChecker = (id: number): boolean => {
+        const boolean = cart.some((book) => book.id ===id);
+        return boolean;
+    }
     
     useEffect(() => {
         axios
@@ -51,12 +60,12 @@ export const BookCard = () => {
     //     addToCart(book);
     //   };
 
-      const navigate = useNavigate();
+    //   const navigate = useNavigate();
 
-      const addToFavorites = () => {
-        setFavoriteBooks(prevBooks => [...prevBooks, book])
-        navigate('/favorites', {state: {book}});
-      }
+    //   const addToFavorites = () => {
+    //     setFavoriteBooks(prevBooks => [...prevBooks, book])
+    //     navigate('/favorites', {state: {book}});
+    //   }
 
       return(
        <div>
@@ -73,20 +82,27 @@ export const BookCard = () => {
                         <div className='bookCard__info'>
                             <div className='bookCard__info-bold'>
                                 <p>$21</p>
-                                <Rating/>
+                                <ReactStars
+                                count={5}
+                                value = {book?.rating}
+                                size={24}
+                                color1={'#cccccc'}
+                                color2={'#FFFF00'}
+                                edit={false}
+                            />
                             </div>
                             <div className='bookCard__info-primary'>
                                 <div className='bookCard__info-primary__main'>
                                     <p>Authors</p>
-                                    <p>Publisher</p>
+                                    <p>Pages</p>
                                     <p>Language</p>
                                     <p>Format</p>
                                 </div>
                                 <div className='bookCard__info-primary__bold'>
                                     <p>{book?.authors}</p>
-                                    <p>Apress, 2018</p>
+                                    <p>{book?.num_pages}</p>
                                     <p>English</p>
-                                    <p>English Paper book / ebook (PDF)</p>
+                                    <p>{book?.format}</p>
                                 </div>  
                             </div>
                             <button className='bookCard__drop-down' onClick={handleClick}>
@@ -94,8 +110,21 @@ export const BookCard = () => {
                                 <img src={chevronDown} alt="chevron" />
                             </button>
                             <div className='bookCard__button'>
-                                <Button onClick={() => navigate(`/book_favs/`)} type={'primary'} content={'Add to cart'}/>
-                                <Button onClick={addToFavorites} type={'primary'} content={'Add to Favorites'}/>
+                                
+                                {cartChecker(book.id) ?
+                                <Button onClick= {()=>{removeFromCart(book.id)}} type={'primary'} content={'Remove from Cart'}/>
+                                : 
+                                <Button onClick= {()=>{addToCart(book)}} type={'primary'} content={'Add to Cart'}/>
+                                } 
+                        </div>
+                        <div>
+                                {favoritesChecker(book.id) ?
+                                <Button onClick= {()=>{removeFromFavorites(book.id)}} type={'primary'} content={'Remove from Favorites'}/>
+                                : 
+                                <Button onClick= {()=>{addToFavorites(book)}} type={'primary'} content={'Add to Favorites'}/>
+                                } 
+                              
+                                
                             </div>
                         </div>
                     </div>
@@ -111,7 +140,14 @@ export const BookCard = () => {
                     <div className='bookCard__info'>
                         <div className='bookCard__info-bold'>
                             $21
-                            <Rating/>
+                            <ReactStars
+                                count={5}
+                                value = {book?.rating}
+                                size={24}
+                                color1={'#cccccc'}
+                                color2={'#FFFF00'}
+                                edit={false}
+                            />
                         </div>
                         <div className='bookCard__info-primary'>
                             <div className='bookCard__info-primary__main'>
@@ -122,9 +158,9 @@ export const BookCard = () => {
                             </div>
                             <div className='bookCard__info-primary__bold'>
                                 <p>{book?.authors}</p>
-                                <p>Apress, 2018</p>
+                                <p>{book?.num_pages}</p>
                                 <p>English</p>
-                                <p>English Paper book / ebook (PDF)</p>
+                                <p>{book?.format}</p>
                             </div>  
                         </div>
                         <button className='bookCard__drop-down' onClick={handleClick}>
@@ -132,8 +168,17 @@ export const BookCard = () => {
                             <img src={chevronDown} alt="chevron" />
                         </button>
                         <div className='bookCard__button'>
-                            <Button  type={'primary'} content={'Add to cart'}/>
-                            <Button onClick={addToFavorites} type={'primary'} content={'Add to Favorites'}/>
+                        {cartChecker(book.id) ?
+                                <Button onClick= {()=>{removeFromCart(book.id)}} type={'primary'} content={'Remove from Cart'}/>
+                                : 
+                                <Button onClick= {()=>{addToCart(book)}} type={'primary'} content={'Add to Cart'}/>
+                                } 
+                        
+                                {favoritesChecker(book.id) ?
+                                <Button onClick= {()=>{removeFromFavorites(book.id)}} type={'primary'} content={'Remove from Favorites'}/>
+                                : 
+                                <Button onClick= {()=>{addToFavorites(book)}} type={'primary'} content={'Add to Favorites'}/>
+                                } 
                         </div>
                     </div>
             </div>

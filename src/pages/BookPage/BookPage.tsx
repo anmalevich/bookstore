@@ -19,28 +19,6 @@ import { BOOK_CARD_URL } from '../../API';
 
 export const BookPage = () => {
   const [page, setPage] = useState<'bookPage' | 'cart'>('bookPage');
-  const [cartItems, setCartItems] = useState<Product[]>([]);
-  // const [post, setPost] = useState<null | ICard>(null);
-  //   const [isLoading, setIsLoading] = useState(true);
-
-  //   useEffect(() => {
-  //       if (id) {
-  //           getPost({ id }).then((data) => {
-  //               setPost(data);
-  //               setIsLoading(false);
-  //           })
-  //       }
-  //   }, [id]);
-    
-  const handleAddToCart = (product: Product) => {
-    setCartItems((prevItems) => [...prevItems, product]);
-    setPage('cart');
-  };
-
-  const handleGoToBookPage = () => {
-    setPage('bookPage');
-  };
-
   const { id } = useParams();
   const [book, setBook] = useState({});
   const navigate = useNavigate();
@@ -61,7 +39,7 @@ export const BookPage = () => {
         
         {page === 'bookPage' ? (
             <>
-                <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" onClick={() => navigate(`/`)} /></a>
+                <button className='arrow-left' onClick={() => navigate(`/new-releases`)}><img src={arrowLeft} alt="arrowLeft" /></button>
                 <Typography content={book.title} type={'H1'}/>
                 
                 <BookCard />
@@ -79,22 +57,3 @@ export const BookPage = () => {
          )
         }
         
-
-
-    //     <div className='bookCard-page'>
-    //         <a href="#" className="bookCard-page__arrow"><img src={arrowLeft} alt="arrowLeft" /></a>
-    //         <Typography content={title} type={'H1'}/>
-            
-    //         {!isOpen ? (
-    //            <BookCard id={0} image={'https://itbook.store/img/books/9781617291609.png'} title={'MongoDB in Action, 2nd Edition'} price={32.10} year={2018} authors={'Julien Vehent'} addToCart={handleAddToCart} />
-    //         ) : (
-    //             <div>
-    //                 <BookCard id={0} image={'https://itbook.store/img/books/9781617291609.png'} title={'MongoDB in Action, 2nd Edition'} price={32.10} year={2018} authors={'Julien Vehent'} addToCart={handleAddToCart} />
-    //                 <MoreDetailse/>
-    //             </div>
-    //         )}
-    //         <Subscription/>
-    //         <SimilarBooks/>
-       
-    //    </div>
- 

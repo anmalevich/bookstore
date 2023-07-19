@@ -1,12 +1,13 @@
 
 import { useEffect, useState } from 'react';
 
-import { Rating } from '../Rating/Rating';
+
 import { Typography } from '../Typography/Typography';
 import { API_URL } from '../../API';
 import axios from 'axios';
 import './SliderCards.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import ReactStars from 'react-stars';
 
 
 // interface ISmallCard {
@@ -51,7 +52,14 @@ import { Link, useNavigate } from 'react-router-dom';
                         <p className='slider-card__authors'>by {book.authors}, Apress 2018</p>   
                         <div className='slider-card__info'>
                             <p>$21</p>
-                            <Rating/>
+                            <ReactStars
+                                count={5}
+                                value = {book.rating}
+                                size={24}
+                                color1={'#cccccc'}
+                                color2={'#FFFF00'}
+                                edit={false}
+                            />
                         </div>
                 </div>
         </div>

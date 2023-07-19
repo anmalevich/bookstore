@@ -5,10 +5,19 @@ interface FavoriteItem {
   name: string;
 }
 
+interface CartItem {
+  id: number;
+  name: string;
+}
+
 interface AppContextValue {
   favorites: FavoriteItem[];
   addToFavorites: (item: FavoriteItem) => void;
   removeFromFavorites: (id: number) => void;
+  cart: CartItem[];
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (id: number) => void;
+
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -22,11 +31,20 @@ export const useAppContext = (): AppContextValue => {
   return context;
 };
 
-interface AppProvider {
+interface IAppProvider {
   children: React.ReactNode;
 }
 
-export const AppProvider = ({ children }: AppProvider) => {
+export const AppProvider = ({ children }: IAppProvider) => {
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  const addToCart = (item: CartItem) => {
+    setCart(prevCart => [...prevCart, item]);
+  }
+
+  const removeFromCart = (id: number) => {
+    setCart(prevCart => prevCart.filter(item => item.id !== id));
+  }
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
 
   const addToFavorites = (item: FavoriteItem) => {
@@ -39,7 +57,7 @@ export const AppProvider = ({ children }: AppProvider) => {
 
   return (
     <AppContext.Provider
-      value={{ favorites, addToFavorites, removeFromFavorites }}
+      value={{ favorites, addToFavorites, removeFromFavorites, cart, addToCart, removeFromCart }}
     >
       {children}
     </AppContext.Provider>

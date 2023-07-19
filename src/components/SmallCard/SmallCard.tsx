@@ -1,29 +1,32 @@
 
-import { useEffect, useState } from 'react';
-
+import React from 'react';
 import { Rating } from '../Rating/Rating';
 import { Typography } from '../Typography/Typography';
-import { API_URL } from '../../API';
-import axios from 'axios';
-import './SmallCard.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+import './SmallCard.scss'
+import ReactStars from 'react-stars';
+
+interface Book {
+  id: number;
+  title: string;
+  authors: string;
+  image_url: string;
+  rating: number;
+}
+
+interface SmallCardProps {
+  books: Book[];
+  onClick?: () => void;
+}
+
+export const SmallCard: React.FC<SmallCardProps> = ({ books }) => {
+  const navigate = useNavigate();
 
   
-  export const SmallCard = () => {
-    const [books,setBooks] = useState([]);
 
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        axios.get(API_URL).then (res => {
-            console.log(res.data)
-            setBooks(res.data)
-        }).catch(err => console.log(err))
-    }, [])
-
-    return (
-        <div className='small-card__box'>
+  return (
+     <div className='small-card__box'>
         {books.map((book) => (
         <div className='small-card' key={book.id}>
 
@@ -38,11 +41,19 @@ import { Link, useNavigate } from 'react-router-dom';
                         <p className='small-card__authors'>by {book.authors}, Apress 2018</p>   
                         <div className='small-card__info'>
                             <p>$21</p>
-                            <Rating/>
+                            <ReactStars
+                                count={5}
+                                value = {book.rating}
+                                size={24}
+                                color1={'#cccccc'}
+                                color2={'#FFFF00'}
+                                edit={false}
+                            />
                         </div>
                 </div>
         </div>
          ))}
         </div>
-    )
+    
+  );
 };
