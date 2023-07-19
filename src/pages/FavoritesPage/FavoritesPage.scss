@@ -3,31 +3,47 @@
     flex-direction: column;
     gap: 32px;
 }
+.arrow-left{
+   
+    border:none;
+    background-color: #fff;
+    cursor:pointer;
+}
 .favoritesItem{
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin: 48px 0;
+    margin: 0 0 48px 0;
+    padding-bottom: 50px;
     border-bottom: 1px solid rgba(231, 231, 231, 1);
 
     &__main{
         display: flex;
-        gap: 32px;
+        gap: 52px;
         align-items: center;
     }
 
     &__image{
-        background-color: peachpuff;
+        background-color: rgba(254, 233, 226, 1);
         width: 256px;
+        height: 170px;
         display: flex;
         justify-content: center;
+        align-items: center;
+
+        img{
+            height: 80%;
+        }
     }
 
     &__info{
         display: flex;
         flex-direction: column;
         gap: 16px;
+        width: 500px;
+        justify-content: center;
+        
 
         &__description{
             font-family: "Helios", sans-serif;
@@ -47,4 +63,10 @@
         line-height: 60px;
         font-weight: 700;
     }
+}
+.red-favorite{
+
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
 }

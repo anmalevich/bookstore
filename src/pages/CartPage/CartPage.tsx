@@ -54,7 +54,7 @@ const CartPage = () => {
   };
   return (
     <div className="cart-page">
-        <button onClick={() => navigate(`/new-releases`)}><img src={arrowLeft} alt="arrowLeft" /></button>
+        <button className='arrow-left' onClick={() => navigate(`/new-releases`)}><img src={arrowLeft} alt="arrowLeft" /></button>
         <Typography content='Your cart' type={'H1'}/>
       
       {cart.length === 0 ? (
@@ -70,6 +70,8 @@ const CartPage = () => {
                     <div className='cartItem__info'>
                         <Typography content={book?.title} type={'H3'}/>
                         <p>by {book?.authors}, 2018</p>
+                        <p>{book?.format}</p>
+                        <p>{book?.genres}</p>
                         {/* <Typography content={description} type={'B2'}/> */}
                         {/* <div>
                           <button onClick={handleDecreaseQuantity}>-</button>

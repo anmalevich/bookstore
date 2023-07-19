@@ -39,7 +39,7 @@ export const BookPage = () => {
         
         {page === 'bookPage' ? (
             <>
-                <button onClick={() => navigate(`/new-releases`)}><img src={arrowLeft} alt="arrowLeft" /></button>
+                <button className='arrow-left' onClick={() => navigate(`/new-releases`)}><img src={arrowLeft} alt="arrowLeft" /></button>
                 <Typography content={book.title} type={'H1'}/>
                 
                 <BookCard />

@@ -10,6 +10,7 @@ import { FavoritesItem } from '../../components/FavoritesItem/FavoritesItem';
 import { Product } from '../../components/mock/Product';
 import { Rating } from '../../components/Rating/Rating';
 import { Typography } from '../../components/Typography/Typography';
+import redFavorite from '../../icons/FilledFavorites.svg';
 
 import arrowLeft from '../../icons/bigArrowLeft.svg'
 
@@ -38,7 +39,7 @@ export const FavoritesPage = () => {
 
       return (
         <>
-        <button onClick={() => navigate(`/new-releases`)}><img src={arrowLeft} alt="arrowLeft" /></button>
+        <button className='arrow-left' onClick={() => navigate(`/new-releases`)}><img src={arrowLeft} alt="arrowLeft" /></button>
            < Typography content={'Favorites'} type={'H1'} />
           {favorites.length > 0 ? (
             favorites.map((book) => (
@@ -66,7 +67,8 @@ export const FavoritesPage = () => {
                     </div>
                   </div>
                   {favoritesChecker(book.id) ? (
-                    <Button onClick={() => removeFromFavorites(book.id)} type={'primary'} content={'Remove from Favorites'} />
+                    <button className='red-favorite'><img src={redFavorite} alt="RedFavorite" onClick={() => removeFromFavorites(book.id)}/></button>
+                   
                   ) : (
                     <Button onClick={() => addToFavorites(book)} type={'primary'} content={'Add to Favorites'} />
                   )}

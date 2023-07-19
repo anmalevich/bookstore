@@ -94,15 +94,15 @@ export const BookCard = () => {
                             <div className='bookCard__info-primary'>
                                 <div className='bookCard__info-primary__main'>
                                     <p>Authors</p>
-                                    <p>Publisher</p>
+                                    <p>Pages</p>
                                     <p>Language</p>
                                     <p>Format</p>
                                 </div>
                                 <div className='bookCard__info-primary__bold'>
                                     <p>{book?.authors}</p>
-                                    <p>Apress, 2018</p>
+                                    <p>{book?.num_pages}</p>
                                     <p>English</p>
-                                    <p>English Paper book / ebook (PDF)</p>
+                                    <p>{book?.format}</p>
                                 </div>  
                             </div>
                             <button className='bookCard__drop-down' onClick={handleClick}>
@@ -158,9 +158,9 @@ export const BookCard = () => {
                             </div>
                             <div className='bookCard__info-primary__bold'>
                                 <p>{book?.authors}</p>
-                                <p>Apress, 2018</p>
+                                <p>{book?.num_pages}</p>
                                 <p>English</p>
-                                <p>English Paper book / ebook (PDF)</p>
+                                <p>{book?.format}</p>
                             </div>  
                         </div>
                         <button className='bookCard__drop-down' onClick={handleClick}>
