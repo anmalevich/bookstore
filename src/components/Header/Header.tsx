@@ -19,7 +19,6 @@ export const Header: FC = () => {
     return (
         <header className='header'>
             <p className='header__text'>Bookstore</p>
-            <Search/>
             <div className='header__pages'>
                 <button 
                     className={`button ${activeButton === 'button1' ? 'active' : ''}`}
