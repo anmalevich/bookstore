@@ -37,7 +37,7 @@ export const Header: FC = () => {
                     className={`button ${activeButton === 'button3' ? 'active' : ''}`}
                     onClick={ () => handleButtonClick('button3')}
                 >
-                    <img src={user} alt="accountPage" onClick={() => navigate(`/authorization`)}/>
+                    <img src={user} alt="accountPage" onClick={() => navigate(`/sign-up`)}/>
                 </button>
             </div>
             

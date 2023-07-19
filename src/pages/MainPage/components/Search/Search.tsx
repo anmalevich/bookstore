@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 
-import search from '../../icons/Search.svg';
-import cancel from '../../icons/Cancel.svg';
+import search from '../../../../icons/Search.svg';
+import cancel from '../../../../icons/Cancel.svg';
 
 import './Search.scss';
 

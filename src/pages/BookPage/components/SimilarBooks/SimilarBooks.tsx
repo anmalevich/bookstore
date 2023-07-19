@@ -1,15 +1,12 @@
 import { FC, useState } from 'react';
 
 
-import arrowLeft from '../../icons/arrowLeft.svg'
+import arrowLeft from '../../../../icons/arrowLeft.svg'
 import { Typography } from '../../../../components/Typography/Typography';
 import { SliderCards } from '../../../../components/SliderCards/SliderCards';
-import arrowRight from '../../icons/arrowRight.svg'
+import arrowRight from '../../../../icons/arrowRight.svg'
 
 import './SimilarBooks.scss';
-
-
-
 
 export const SimilarBooks: FC = () => {
 

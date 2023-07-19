@@ -1,14 +1,14 @@
 import { useEffect, useState} from 'react';
 
 import { Button } from '../../../../components/Button/Button';
-import chevronDown from '../../icons/chevron-down.svg'
+import chevronDown from '../../../../icons/chevron-down.svg'
 import { MoreDetailse } from '../../../../components/MoreDetailse/MoreDetailse';
 import { useParams} from 'react-router-dom';
 import { BOOK_CARD_URL } from '../../../../API';
 import { useAppContext } from '../../../../components/context/appContext';
 import ReactStars from 'react-stars';
-import redFavorite from '../../icons/FilledFavorites.svg';
-import emptyFavorite from '../../icons/Favorites.svg';
+import redFavorite from '../../../../icons/FilledFavorites.svg';
+import emptyFavorite from '../../../../icons/Favorites.svg';
 
 import axios from 'axios';
 import './BookCard.scss';
@@ -48,16 +48,12 @@ export const BookCard = () => {
       };
 
       return(
-       <div>
-            
-             
+       <div> 
             {!isOpen ? (
-                
                     <div>
                     <div className='bookCard' key={book?.id}>
                         <div className='bookCard__image'>
                             <img src={book?.image_url} alt="book" />
-                        
                         </div>
                         <div className='bookCard__info'>
                             <div className='bookCard__info-bold'>
