@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import ReactStars from 'react-stars';
 import { isTemplateMiddle } from 'typescript';
 import { BOOK_CARD_URL } from '../../API';
 import { Button } from '../../components/Button/Button';
@@ -53,7 +54,14 @@ export const FavoritesPage = () => {
                       <p className='favoritesItem__info__description'>by {book?.authors}, 2018</p>
                       <div className='favoritesItem__rating'>
                         <p className='favoritesItem__price'>$21</p>
-                        <Rating />
+                        <ReactStars
+                                count={5}
+                                value = {book?.rating}
+                                size={24}
+                                color1={'#cccccc'}
+                                color2={'#FFFF00'}
+                                edit={false}
+                            />
                       </div>
                     </div>
                   </div>

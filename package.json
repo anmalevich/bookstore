@@ -18,9 +18,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-paginate": "^8.2.0",
+    "react-rating": "^2.0.5",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
+    "react-stars": "^2.2.5",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "reselect": "^4.1.8",
@@ -52,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-stars": "^2.2.1",
     "sass": "^1.63.6"
   }
 }

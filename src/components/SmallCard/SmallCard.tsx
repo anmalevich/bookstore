@@ -5,12 +5,14 @@ import { Typography } from '../Typography/Typography';
 import { useNavigate } from 'react-router-dom';
 
 import './SmallCard.scss'
+import ReactStars from 'react-stars';
 
 interface Book {
   id: number;
   title: string;
   authors: string;
   image_url: string;
+  rating: number;
 }
 
 interface SmallCardProps {
@@ -39,7 +41,14 @@ export const SmallCard: React.FC<SmallCardProps> = ({ books }) => {
                         <p className='small-card__authors'>by {book.authors}, Apress 2018</p>   
                         <div className='small-card__info'>
                             <p>$21</p>
-                            <Rating/>
+                            <ReactStars
+                                count={5}
+                                value = {book.rating}
+                                size={24}
+                                color1={'#cccccc'}
+                                color2={'#FFFF00'}
+                                edit={false}
+                            />
                         </div>
                 </div>
         </div>
